@@ -20,6 +20,7 @@
     <modules>
         <module>ocp-mortgage-rules</module>
         <module>ocp-mortgage-dashboard</module>
+        <module>ocp-credit-service</module>
     </modules>
 
     <repositories>

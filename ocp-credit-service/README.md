@@ -1,0 +1,1 @@
+Simple Credit Service endpoint for JBPM and OpenShift integration RefArch project 
