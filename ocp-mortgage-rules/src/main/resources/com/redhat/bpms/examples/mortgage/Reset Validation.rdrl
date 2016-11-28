@@ -1,0 +1,12 @@
+package com.redhat.bpms.examples.mortgage;
+
+import java.lang.Number;
+
+rule "Reset Validation"
+	dialect "mvel"
+	ruleflow-group "resetValidation"
+	when
+		error : ValidationError( )
+	then
+		retract( error );
+end

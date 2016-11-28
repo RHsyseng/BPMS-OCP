@@ -1,0 +1,73 @@
+
+<div class="row">
+    <h4><b>Rules Processes Available</b></h4>
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Container Id</th>
+            <th>Process Name</th>
+            <th>Process Id</th>
+            <th>Process Version</th>
+        </tr>
+        </thead>
+
+        <tbody ng-repeat="process in processes">
+        <tr>
+            <td>{{process["container-id"]}}</td>
+            <td>{{process["process-name"]}}</td>
+            <td>{{process["process-id"]}}</td>
+            <td>{{process["process-version"]}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+    <h4><b>Running Processes Instances</b></h4>
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Process Instance Id</th>
+            <th>Process Name</th>
+            <th>Container Id</th>
+            <th>Process State</th>
+            <th>Process Start</th>
+        </tr>
+        </thead>
+
+        <tbody ng-repeat="process in running">
+        <tr>
+            <td>{{process["process-instance-id"]}}</td>
+            <td>{{process["process-name"]}}</td>
+            <td>{{process["container-id"]}}</td>
+            <td>{{consts.PROCESS_STATE[process["process-instance-state"]]}}</td>
+            <td>{{process["start-date"] | date:'MM-dd-yyyy HH:mm:ss Z'}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+    <h4><b>Outstanding Work Items</b></h4>
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Work Item Id</th>
+            <th>Work Item Name</th>
+            <th>Related Process Instance</th>
+            <th>Group Id</th>
+            <th>Node Name</th>
+        </tr>
+        </thead>
+
+        <tbody ng-repeat="workItem in workItems">
+        <tr>
+            <td>{{workItem["work-item-id"]}}</td>
+            <td>{{workItem["work-item-name"]}}</td>
+            <td>{{workItem["process-instance-id"]}}</td>
+            <td>{{workItem["work-item-params"]["GroupId"]}}</td>
+            <td>{{workItem["work-item-params"]["NodeName"]}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

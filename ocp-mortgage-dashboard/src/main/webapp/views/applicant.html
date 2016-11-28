@@ -1,0 +1,112 @@
+
+<div class="alert alert-success" ng-show="successVisible">
+    <span class="pficon pficon-ok"></span>
+    Application submitted successfully
+</div>
+
+<div class="alert alert-danger" ng-show="errorVisible">
+    <span class="pficon pficon-error-circle-o"></span>
+    An error occurred while submitting your application
+</div>
+
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="applicantName">Applicant Name</label>
+        <div class="col-sm-9">
+            <input ng-model="applicantName" type="text" id="applicantName" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="applicantSsn">Social Security Number</label>
+        <div class="col-sm-9">
+            <input ng-model="applicantSsn" type="text" id="applicantSsn" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="applicantIncome">Annual Income</label>
+        <div class="col-sm-9">
+            <input ng-model="applicantIncome" type="text" id="applicantIncome" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="propertyAddress">Property Address</label>
+        <div class="col-sm-9">
+            <input ng-model="propertyAddress" type="text" id="propertyAddress" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="propertyPrice">Sales Price</label>
+        <div class="col-sm-9">
+            <input ng-model="propertyPrice" type="text" id="propertyPrice" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="downPayment">Down Payment</label>
+        <div class="col-sm-9">
+            <input ng-model="downPayment" type="text" id="downPayment" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="amortization">Amortization</label>
+        <div class="col-sm-9">
+            <input ng-model="amortization" type="text" id="amortization" class="form-control">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="apr">Annual Percentage Rate</label>
+        <div class="col-sm-9">
+            <input ng-model="apr" type="text" id="apr" class="form-control">
+        </div>
+    </div>
+    <div class="form-group" style="display: none">
+        <label class="col-sm-3 control-label" for="payload">Example Payload</label>
+        <div class="col-sm-9">
+<textarea type="text" id="payload" rows="20" class="form-control disabled" disabled>
+{
+  "application" :
+  {
+    "com.redhat.bpms.examples.mortgage.Application":
+    {
+      "id":21,
+      "applicant":
+      {
+        "id":11,
+        "name":"{{applicantName}}",
+        "ssn":{{applicantSsn}},
+        "income":{{applicantIncome}},
+        "creditScore":780
+      },
+      "property":{
+        "id":12,
+        "address":"{{propertyAddress}}",
+        "price":{{propertyPrice}}
+
+      },
+      "appraisal":{
+        "id":33,
+        "property":{
+          "id":12,
+          "address":"123 Somewhere St",
+          "price":250000
+        },
+        "date":"2016-10-21T14:00:00",
+        "value":260000
+      },
+      "downPayment":{{downPayment}},
+      "amortization":{{amortization}},
+      "mortgageAmount":250000,
+      "apr":4.5,
+      "validationErrors":[]
+    }
+  }
+}
+</textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+            <button ng-click="submitApp()" class="btn btn-primary">Submit Application</button>
+        </div>
+    </div>
+</form>
+

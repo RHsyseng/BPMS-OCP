@@ -1,0 +1,301 @@
+package com.redhat.bpms.examples.mortgage;
+
+rule "Row 1 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 660 , creditScore < 680 )
+    f2 : Application( amortization == 10 )
+  then
+    f2.setApr( 10.0 );
+end
+
+rule "Row 2 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 660 , creditScore < 680 )
+    f2 : Application( amortization == 15 )
+  then
+    f2.setApr( 9.5 );
+end
+
+rule "Row 3 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 660 , creditScore < 680 )
+    f2 : Application( amortization == 30 )
+  then
+    f2.setApr( 9.0 );
+end
+
+rule "Row 4 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 660 , creditScore < 700 )
+    f2 : Application( amortization == 10 )
+  then
+    f2.setApr( 9.5 );
+end
+
+rule "Row 5 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 660 , creditScore < 700 )
+    f2 : Application( amortization == 15 )
+  then
+    f2.setApr( 9.0 );
+end
+
+rule "Row 6 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 660 , creditScore < 700 )
+    f2 : Application( amortization == 30 )
+  then
+    f2.setApr( 8.5 );
+end
+
+rule "Row 7 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 660 , creditScore < 720 )
+    f2 : Application( amortization == 10 )
+  then
+    f2.setApr( 9.0 );
+end
+
+rule "Row 8 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 660 , creditScore < 720 )
+    f2 : Application( amortization == 15 )
+  then
+    f2.setApr( 8.5 );
+end
+
+rule "Row 9 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 660 , creditScore < 720 )
+    f2 : Application( amortization == 30 )
+  then
+    f2.setApr( 8.0 );
+end
+
+rule "Row 10 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 660 , creditScore < 740 )
+    f2 : Application( amortization == 10 )
+  then
+    f2.setApr( 8.5 );
+end
+
+rule "Row 11 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 660 , creditScore < 740 )
+    f2 : Application( amortization == 15 )
+  then
+    f2.setApr( 8.0 );
+end
+
+rule "Row 12 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 660 , creditScore < 740 )
+    f2 : Application( amortization == 30 )
+  then
+    f2.setApr( 7.5 );
+end
+
+rule "Row 13 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 680 , creditScore < 700 )
+    f2 : Application( amortization == 10 )
+  then
+    f2.setApr( 8.0 );
+end
+
+rule "Row 14 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 680 , creditScore < 700 )
+    f2 : Application( amortization == 15 )
+  then
+    f2.setApr( 7.5 );
+end
+
+rule "Row 15 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 680 , creditScore < 700 )
+    f2 : Application( amortization == 30 )
+  then
+    f2.setApr( 7.0 );
+end
+
+rule "Row 16 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 680 , creditScore < 720 )
+    f2 : Application( amortization == 10 )
+  then
+    f2.setApr( 7.5 );
+end
+
+rule "Row 17 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 680 , creditScore < 720 )
+    f2 : Application( amortization == 15 )
+  then
+    f2.setApr( 7.0 );
+end
+
+rule "Row 18 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 680 , creditScore < 720 )
+    f2 : Application( amortization == 30 )
+  then
+    f2.setApr( 6.5 );
+end
+
+rule "Row 19 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 680 , creditScore < 740 )
+    f2 : Application( amortization == 10 )
+  then
+    f2.setApr( 7.0 );
+end
+
+rule "Row 20 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 680 , creditScore < 740 )
+    f2 : Application( amortization == 15 )
+  then
+    f2.setApr( 6.5 );
+end
+
+rule "Row 21 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 680 , creditScore < 740 )
+    f2 : Application( amortization == 30 )
+  then
+    f2.setApr( 6.0 );
+end
+
+rule "Row 22 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 700 , creditScore < 720 )
+    f2 : Application( amortization == 10 )
+  then
+    f2.setApr( 6.5 );
+end
+
+rule "Row 23 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 700 , creditScore < 720 )
+    f2 : Application( amortization == 15 )
+  then
+    f2.setApr( 6.0 );
+end
+
+rule "Row 24 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 700 , creditScore < 720 )
+    f2 : Application( amortization == 30 )
+  then
+    f2.setApr( 5.5 );
+end
+
+rule "Row 25 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 700 , creditScore < 740 )
+    f2 : Application( amortization == 10 )
+  then
+    f2.setApr( 6.0 );
+end
+
+rule "Row 26 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 700 , creditScore < 740 )
+    f2 : Application( amortization == 15 )
+  then
+    f2.setApr( 5.5 );
+end
+
+rule "Row 27 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 700 , creditScore < 740 )
+    f2 : Application( amortization == 30 )
+  then
+    f2.setApr( 5.0 );
+end
+
+rule "Row 28 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 720 , creditScore < 740 )
+    f2 : Application( amortization == 10 )
+  then
+    f2.setApr( 5.5 );
+end
+
+rule "Row 29 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 720 , creditScore < 740 )
+    f2 : Application( amortization == 15 )
+  then
+    f2.setApr( 5.0 );
+end
+
+rule "Row 30 Mortgage Calculation"
+  ruleflow-group "apr-calculation"
+  dialect "mvel"
+  when
+    f1 : Applicant( creditScore >= 720 , creditScore < 740 )
+    f2 : Application( amortization == 30 )
+  then
+    f2.setApr( 4.5 );
+end

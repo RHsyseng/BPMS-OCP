@@ -1,0 +1,31 @@
+{
+  "name": "ocp-mortgage-dashboard",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "jary@redhat.com"
+  ],
+  "license": "Apache-2.0",
+  "homepage": "",
+  "private": true,
+  "dependencies": {
+    "angular": "^1.4.0",
+    "angular-loader": "^1.4.0",
+    "angular-mocks": "^1.4.0",
+    "angular-route": "^1.4.0",
+    "angular-resource": "^1.4.0",
+    "bootstrap": "3.2.0",
+    "angular-patternfly": "^3.13.0"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "resolutions": {
+    "bootstrap": "~3.3.7"
+  }
+}

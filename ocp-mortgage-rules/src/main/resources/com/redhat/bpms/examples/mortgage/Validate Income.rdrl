@@ -1,0 +1,14 @@
+package com.redhat.bpms.examples.mortgage;
+
+import java.lang.Number;
+
+rule "Validate Income"
+	dialect "mvel"
+	ruleflow-group "validation"
+	when
+		Applicant( income < 10000 )
+	then
+		ValidationError fact0 = new ValidationError();
+		fact0.setCause( "Income too low" );
+		insert( fact0 );
+end
