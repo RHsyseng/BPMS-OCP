@@ -40,6 +40,10 @@ app.config(['$routeProvider',
                 templateUrl: 'views/appraiser.html',
                 controller: 'AppraiserCtrl'
             })
+            .when('/troubleshoot', {
+                templateUrl: 'views/troubleshoot.html',
+                controller: 'TroubleshootCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });

@@ -5,7 +5,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <title>Mortgage Process Dashboard</title>
+    <title>Mortgage Dashboard</title>
 
     <link rel="stylesheet" href="vendor/patternfly/dist/css/patternfly.min.css">
     <link rel="stylesheet" href="vendor/patternfly/dist/css/patternfly-additions.min.css">
@@ -29,11 +29,7 @@
         </div>
 
         <div class="collapse navbar-collapse navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-utility">
-                <li>
-                    <a href="#">Sign out</a>
-                </li>
-            </ul>
+            <ul class="nav navbar-nav navbar-utility"></ul>
             <ul class="nav navbar-nav navbar-primary">
                 <li class="active"><a href="#/">Overview</a></li>
                 <li><a ng-href="#/applicant">New Application</a></li>
@@ -53,6 +49,7 @@
         <div class="container"></div>
     </div>
 
+<!-- VENDOR RESOURCES -->
 <script src="vendor/angular/angular.js"></script>
 <!--<script src="vendor/angular-patternfly/dist/angular-patternfly.min.js"></script>-->
 <script src="vendor/angular-route/angular-route.js"></script>
@@ -79,8 +76,6 @@
 <script src="js/controllers/applicant.js"></script>
 <script src="js/controllers/dataCorrection.js"></script>
 <script src="js/controllers/manager.js"></script>
-<script src="js/filters.js"></script>
-<script src="js/routes.js"></script>
-<script src="js/services.js"></script>
+<script src="js/controllers/troubleshoot.js"></script>
 </body>
 </html>

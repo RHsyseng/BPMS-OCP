@@ -1,14 +1,13 @@
 package com.redhat.bpms.examples;
 
 import com.redhat.bpms.examples.mortgage.Application;
-import com.redhat.bpms.examples.service.RestClientService;
+import com.redhat.bpms.examples.service.ApplicantRestService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -21,13 +20,13 @@ import javax.ws.rs.core.Response;
 public class ApplicantController {
 
     @Inject
-    private RestClientService restClientService;
+    private ApplicantRestService applicantRestService;
 
     @POST
     @Path("/startApp")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response.Status startApp(Application application) {
 
-        return restClientService.startApp(application);
+        return applicantRestService.startApp(application);
     }
 }

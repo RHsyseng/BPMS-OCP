@@ -1,7 +1,6 @@
 package com.redhat.bpms.examples;
 
-import com.redhat.bpms.examples.service.RestClientService;
-import org.kie.server.api.model.KieContainerResource;
+import com.redhat.bpms.examples.service.MgmtClientService;
 import org.kie.server.api.model.definition.ProcessDefinition;
 import org.kie.server.api.model.instance.ProcessInstance;
 import org.kie.server.api.model.instance.WorkItemInstance;
@@ -23,14 +22,14 @@ import java.util.List;
 public class HomeController {
 
     @Inject
-    private RestClientService restClientService;
+    private MgmtClientService mgmtClientService;
 
     @GET
     @Path("/processes")
     @Produces(MediaType.APPLICATION_JSON)
     public List<ProcessDefinition> listProcesses() {
 
-        return restClientService.listProcesses();
+        return mgmtClientService.listProcesses();
     }
 
     @GET
@@ -38,7 +37,7 @@ public class HomeController {
     @Produces(MediaType.APPLICATION_JSON)
     public List<ProcessInstance> listProcessInstances() {
 
-        return restClientService.listProcessInstances();
+        return mgmtClientService.listProcessInstances();
     }
 
     @GET
@@ -46,6 +45,6 @@ public class HomeController {
     @Produces(MediaType.APPLICATION_JSON)
     public List<WorkItemInstance> listWorkItems() {
 
-        return restClientService.listWorkItems();
+        return mgmtClientService.listWorkItems();
     }
 }

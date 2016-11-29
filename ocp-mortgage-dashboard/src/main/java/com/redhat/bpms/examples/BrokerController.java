@@ -1,6 +1,6 @@
 package com.redhat.bpms.examples;
 
-import com.redhat.bpms.examples.service.RestClientService;
+import com.redhat.bpms.examples.service.BrokerRestService;
 import org.kie.server.api.model.instance.TaskSummary;
 
 import javax.enterprise.context.RequestScoped;
@@ -20,14 +20,14 @@ import java.util.Map;
 public class BrokerController {
 
     @Inject
-    private RestClientService restClientService;
+    private BrokerRestService brokerRestService;
 
     @GET
     @Path("/dataCorrectionTasks")
     @Produces(MediaType.APPLICATION_JSON)
     public List<TaskSummary> listTasks() {
 
-        return restClientService.listTasks();
+        return brokerRestService.listTasks();
     }
 
     @POST
@@ -35,7 +35,7 @@ public class BrokerController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response.Status claimTask(Long taskId) {
 
-        return restClientService.claimTask(taskId);
+        return brokerRestService.claimTask(taskId);
     }
 
     @POST
@@ -43,7 +43,7 @@ public class BrokerController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response.Status releaseTask(Long taskId) {
 
-        return restClientService.releaseTask(taskId);
+        return brokerRestService.releaseTask(taskId);
     }
 
     @POST
@@ -52,7 +52,7 @@ public class BrokerController {
     @Produces(MediaType.APPLICATION_JSON)
     public Map<String, Object> startTask(Long taskId) {
 
-        return restClientService.startTask(taskId);
+        return brokerRestService.startTask(taskId);
     }
 
     @POST
@@ -60,6 +60,6 @@ public class BrokerController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response.Status stopTask(Long taskId) {
 
-        return restClientService.stopTask(taskId);
+        return brokerRestService.stopTask(taskId);
     }
 }
