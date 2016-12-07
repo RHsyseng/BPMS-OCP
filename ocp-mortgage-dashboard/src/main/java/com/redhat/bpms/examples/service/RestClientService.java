@@ -1,6 +1,7 @@
 package com.redhat.bpms.examples.service;
 
 import com.redhat.bpms.examples.Configuration;
+import org.apache.commons.math3.exception.NullArgumentException;
 import org.kie.server.api.marshalling.MarshallingFormat;
 import org.kie.server.api.model.KieContainerResource;
 import org.kie.server.api.model.definition.ProcessDefinition;
@@ -81,10 +82,6 @@ public class RestClientService {
             containers = initClient(Configuration.Users.KIESERVER)
                     .listContainers().getResult().getContainers();
 
-            if (!containers.isEmpty()) {
-                containerId = containers.get(0).getContainerId();
-            }
-
         } catch (Exception e) {
             logger.error("ERROR in Rest endpoint listContainers...", e);
         }
@@ -110,5 +107,20 @@ public class RestClientService {
         }
 
         return tasks;
+    }
+
+    protected String getContainerId() {
+        try {
+            if (containerId == null || containerId.isEmpty()) {
+                containerId = listContainers().get(0).getContainerId();
+            }
+            if (containerId == null)
+                throw new NullArgumentException();
+
+        } catch (Exception e) {
+            logger.error("ERROR in resolving container Id...", e);
+        }
+
+        return containerId;
     }
 }

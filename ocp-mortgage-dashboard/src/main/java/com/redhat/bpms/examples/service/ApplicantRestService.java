@@ -29,7 +29,7 @@ public class ApplicantRestService extends RestClientService {
             ProcessServicesClient processServicesClient = initClient(Configuration.Users.KIESERVER)
                     .getServicesClient(ProcessServicesClient.class);
 
-            processServicesClient.startProcess(containerId, PROCESS_ID, ApplicationMapper.convert(application));
+            processServicesClient.startProcess(getContainerId(), PROCESS_ID, ApplicationMapper.convert(application));
 
         } catch (Exception e) {
             logger.error("ERROR in Rest endpoint startApp...", e);

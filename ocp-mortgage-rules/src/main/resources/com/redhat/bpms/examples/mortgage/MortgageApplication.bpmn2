@@ -271,7 +271,7 @@ kcontext.getKnowledgeRuntime().insert( application );]]></drools:script>
       <bpmn2:dataInputAssociation id="_LPg7xYoZEea7I-kAbfhROQ">
         <bpmn2:targetRef>_7EE71308-CC71-49E9-AD27-A769037333FE_NamespaceInputX</bpmn2:targetRef>
         <bpmn2:assignment id="_LPg7xooZEea7I-kAbfhROQ">
-          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_LPg7x4oZEea7I-kAbfhROQ"><![CDATA[http://mortgage.examples.bpms.redhat.com/]]></bpmn2:from>
+          <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_LPg7x4oZEea7I-kAbfhROQ"><![CDATA[http://http.jbpm.ose.refarch.redhat.com/]]></bpmn2:from>
           <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_LPg7yIoZEea7I-kAbfhROQ">_7EE71308-CC71-49E9-AD27-A769037333FE_NamespaceInputX</bpmn2:to>
         </bpmn2:assignment>
       </bpmn2:dataInputAssociation>

@@ -30,7 +30,7 @@ public class BrokerRestService extends RestClientService {
             UserTaskServicesClient userTaskClient = initClient(Configuration.Users.BROKER)
                     .getServicesClient(UserTaskServicesClient.class);
 
-            userTaskClient.claimTask(containerId, taskId, Configuration.Users.BROKER.username());
+            userTaskClient.claimTask(getContainerId(), taskId, Configuration.Users.BROKER.username());
 
         } catch (Exception e) {
             logger.error("ERROR in Rest endpoint claimTask...", e);
@@ -45,7 +45,7 @@ public class BrokerRestService extends RestClientService {
             UserTaskServicesClient userTaskClient = initClient(Configuration.Users.BROKER)
                     .getServicesClient(UserTaskServicesClient.class);
 
-            userTaskClient.releaseTask(containerId, taskId, Configuration.Users.BROKER.username());
+            userTaskClient.releaseTask(getContainerId(), taskId, Configuration.Users.BROKER.username());
 
         } catch (Exception e) {
             logger.error("ERROR in Rest endpoint releaseTask...", e);
@@ -61,7 +61,7 @@ public class BrokerRestService extends RestClientService {
             UserTaskServicesClient userTaskClient = initClient(Configuration.Users.BROKER)
                     .getServicesClient(UserTaskServicesClient.class);
 
-            userTaskClient.startTask(containerId, taskId, Configuration.Users.BROKER.username());
+            userTaskClient.startTask(getContainerId(), taskId, Configuration.Users.BROKER.username());
 
             inputApplication = userTaskClient.getTaskInputContentByTaskId(containerId, taskId);
 
@@ -78,7 +78,7 @@ public class BrokerRestService extends RestClientService {
             UserTaskServicesClient userTaskClient = initClient(Configuration.Users.BROKER)
                     .getServicesClient(UserTaskServicesClient.class);
 
-            userTaskClient.stopTask(containerId, taskId, Configuration.Users.BROKER.username());
+            userTaskClient.stopTask(getContainerId(), taskId, Configuration.Users.BROKER.username());
 
         } catch (Exception e) {
             logger.error("ERROR in Rest endpoint stopTask...", e);

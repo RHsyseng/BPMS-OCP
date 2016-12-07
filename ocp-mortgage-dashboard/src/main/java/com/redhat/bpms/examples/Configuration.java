@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public final class Configuration {
 
-    public static final String REST_BASE_URI = "http://mort-dashboard.bxms.ose/kie-server/services/rest/server";
+    public static final String REST_BASE_URI = "http://rules.bxms.ose/kie-server/services/rest/server";
 
     public static enum Users {
 
