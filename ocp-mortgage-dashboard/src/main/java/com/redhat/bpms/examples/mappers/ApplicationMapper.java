@@ -36,6 +36,7 @@ public final class ApplicationMapper {
             appContent.put("property", property);
             appContent.put("downPayment", application.getDownPayment());
             appContent.put("amortization", application.getAmortization());
+            appContent.put("mortgageAmount", application.getProperty().getPrice() - application.getDownPayment());
 
             wrapper.put("com.redhat.bpms.examples.mortgage.Application", appContent);
             payload.put("application", wrapper);

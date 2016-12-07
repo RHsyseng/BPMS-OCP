@@ -357,6 +357,10 @@ kcontext.getKnowledgeRuntime().insert( application );]]></drools:script>
       <bpmn2:incoming>_EBB04B81-FD4E-4A8E-856C-7458EB0995E7</bpmn2:incoming>
       <bpmn2:outgoing>_99DCEC03-119C-4148-9CD3-7D7C4CB08989</bpmn2:outgoing>
       <bpmn2:script><![CDATA[System.out.println("Qualify Borrower");
+System.out.println("APR:" + application.getApr());
+System.out.println("AMORT:" + application.getAmortization());
+System.out.println("AMT:" + application.getMortgageAmount());
+System.out.println("INC:" + application.getApplicant().getIncome());
 double monthlyRate = application.getApr() / 1200;
 double tempDouble = Math.pow(1+monthlyRate, application.getAmortization() * 12);
 tempDouble = tempDouble / (tempDouble - 1);
