@@ -30,6 +30,14 @@ public class BrokerController {
         return brokerRestService.listTasks();
     }
 
+    @GET
+    @Path("/downPaymentTasks")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<TaskSummary> listDownPaymentTasks() {
+
+        return brokerRestService.listDownPaymentTasks();
+    }
+
     @POST
     @Path("/claimTask")
     @Consumes(MediaType.APPLICATION_JSON)

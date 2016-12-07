@@ -31,8 +31,8 @@ angular.module('app')
                 downPayment: $scope.downPayment,
                 amortization: $scope.amortization,
                 appraisal : null,
-                mortgageAmount: null,
-                apr: null
+                mortgageAmount: ($scope.propertyPrice - $scope.downPayment),
+                apr: $scope.apr
             };
 
             $http.post("service/applicant/startApp", $application).then(

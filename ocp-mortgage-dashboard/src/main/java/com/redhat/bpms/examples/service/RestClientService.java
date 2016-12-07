@@ -24,35 +24,28 @@ public class RestClientService {
 
     private static final Logger logger = LoggerFactory.getLogger(RestClientService.class);
 
-    protected static final MarshallingFormat FORMAT = MarshallingFormat.JSON;
+    private static final MarshallingFormat FORMAT = MarshallingFormat.JSON;
 
-    protected static final String PROCESS_ID = "com.redhat.bpms.examples.mortgage.MortgageApplication";
+    protected final String PROCESS_ID = "com.redhat.bpms.examples.mortgage.MortgageApplication";
 
-    protected String containerId;
+    KieServicesClient initClient(Configuration.Users user) {
 
-    protected KieServicesClient kieServicesClient;
-
-    protected Configuration.Users lastUser;
-
-    protected KieServicesClient initClient(Configuration.Users user) {
-
+        KieServicesClient client = null;
         try {
-            if (kieServicesClient == null || lastUser != user) {
 
-                KieServicesConfiguration conf = KieServicesFactory.newRestConfiguration(
-                        Configuration.REST_BASE_URI,
-                        user.username(),
-                        user.password());
+            KieServicesConfiguration conf = KieServicesFactory.newRestConfiguration(
+                    Configuration.REST_BASE_URI,
+                    user.username(),
+                    user.password());
 
-                conf.setMarshallingFormat(FORMAT);
+            conf.setMarshallingFormat(FORMAT);
 
-                lastUser = user;
-                kieServicesClient = KieServicesFactory.newKieServicesClient(conf);
-            }
+            client = KieServicesFactory.newKieServicesClient(conf);
+
         } catch (Exception e) {
             logger.error("ERROR in initializing REST client...", e);
         }
-        return kieServicesClient;
+        return client;
     }
 
     public List<ProcessInstance> listProcessInstances() {
@@ -75,7 +68,7 @@ public class RestClientService {
         return processInstances;
     }
 
-    public List<KieContainerResource> listContainers() {
+    List<KieContainerResource> listContainers() {
 
         List<KieContainerResource> containers = new LinkedList<>();
         try {
@@ -109,13 +102,14 @@ public class RestClientService {
         return tasks;
     }
 
-    protected String getContainerId() {
+    String getContainerId() {
+
+        String containerId = null;
         try {
-            if (containerId == null || containerId.isEmpty()) {
                 containerId = listContainers().get(0).getContainerId();
-            }
-            if (containerId == null)
-                throw new NullArgumentException();
+
+                if (containerId == null)
+                    throw new NullArgumentException();
 
         } catch (Exception e) {
             logger.error("ERROR in resolving container Id...", e);

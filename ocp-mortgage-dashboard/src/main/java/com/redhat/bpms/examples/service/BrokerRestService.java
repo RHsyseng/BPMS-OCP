@@ -63,7 +63,7 @@ public class BrokerRestService extends RestClientService {
 
             userTaskClient.startTask(getContainerId(), taskId, Configuration.Users.BROKER.username());
 
-            inputApplication = userTaskClient.getTaskInputContentByTaskId(containerId, taskId);
+            inputApplication = userTaskClient.getTaskInputContentByTaskId(getContainerId(), taskId);
 
         } catch (Exception e) {
             logger.error("ERROR in Rest endpoint startTask...", e);
@@ -86,7 +86,7 @@ public class BrokerRestService extends RestClientService {
         return Response.Status.OK;
     }
 
-    public List<TaskSummary> listTasks() {
+    private List<TaskSummary> filterTasks(String filterString) {
 
         List<TaskSummary> tasks = new LinkedList<>();
 
@@ -98,7 +98,7 @@ public class BrokerRestService extends RestClientService {
 
                 for (TaskSummary task : userTaskClient.findTasksByStatusByProcessInstanceId(process.getId(),
                         new LinkedList<>(), 0, 100)) {
-                    if (task.getName().equals("Data Correction"))
+                    if (task.getName().equals(filterString))
                         tasks.add(task);
                 }
             }
@@ -106,7 +106,16 @@ public class BrokerRestService extends RestClientService {
         } catch (Exception e) {
             logger.error("ERROR in Rest endpoint listTasks...", e);
         }
-
         return tasks;
+    }
+
+    public List<TaskSummary> listTasks() {
+
+        return filterTasks("Data Correction");
+    }
+
+    public List<TaskSummary> listDownPaymentTasks() {
+
+        return filterTasks("Increase Down Payment");
     }
 }

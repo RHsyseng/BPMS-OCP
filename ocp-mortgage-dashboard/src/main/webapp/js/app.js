@@ -44,6 +44,10 @@ app.config(['$routeProvider',
                 templateUrl: 'views/troubleshoot.html',
                 controller: 'TroubleshootCtrl'
             })
+            .when('/downPayment', {
+                templateUrl: 'views/downPayment.html',
+                controller: 'DownPaymentCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });
