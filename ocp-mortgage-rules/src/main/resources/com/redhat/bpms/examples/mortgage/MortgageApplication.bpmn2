@@ -279,7 +279,7 @@ kcontext.getKnowledgeRuntime().insert( application );]]></drools:script>
         <bpmn2:targetRef>_7EE71308-CC71-49E9-AD27-A769037333FE_UrlInputX</bpmn2:targetRef>
         <bpmn2:assignment id="_LPg7yooZEea7I-kAbfhROQ">
           <bpmn2:from xsi:type="bpmn2:tFormalExpression"
-          id="_LPg7y4oZEea7I-kAbfhROQ"><![CDATA[http://cs.bxms.ose/jboss-os-service/CreditService?WSDL]]></bpmn2:from>
+          id="_LPg7y4oZEea7I-kAbfhROQ"><![CDATA[http://cs.bxms.ose/creditservice/CreditService?WSDL]]></bpmn2:from>
           <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_LPg7zIoZEea7I-kAbfhROQ">_7EE71308-CC71-49E9-AD27-A769037333FE_UrlInputX</bpmn2:to>
         </bpmn2:assignment>
       </bpmn2:dataInputAssociation>
