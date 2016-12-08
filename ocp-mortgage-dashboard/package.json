@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "if [ -d \"$OPENSHIFT_REPO_DIR\" ]; then (export HOME=\"$OPENSHIFT_REPO_DIR\"/..; bower install --config.interactive=false) else (bower install) fi",
+    "postinstall": "HOME=$OPENSHIFT_REPO_DIR bower install || bower install",
     "prestart": "npm install; npm install -g bower",
     "start": "http-server src/main/webapp -a localhost -p 8000",
     "pretest": "npm install",
