@@ -26,5 +26,6 @@ public class EndpointApplication extends Application {
         resources.add(ApplicantController.class);
         resources.add(TroubleshootController.class);
         resources.add(AppraiserController.class);
+        resources.add(FinanceController.class);
     }
 }

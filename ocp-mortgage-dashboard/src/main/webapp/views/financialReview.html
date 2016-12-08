@@ -1,0 +1,129 @@
+<div class="alert alert-success" ng-show="successVisible">
+    <span class="pficon pficon-ok"></span>
+    {{successMessage}}
+</div>
+
+<div class="alert alert-danger" ng-show="errorVisible">
+    <span class="pficon pficon-error-circle-o"></span>
+    {{errorMessage}}
+</div>
+
+<div class="row">
+    <h4><b>Outstanding Review Tasks</b></h4>
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Task Id</th>
+            <th>Task Name</th>
+            <th>Task Owner</th>
+            <th>Related Process Instance</th>
+            <th>Task Status</th>
+            <th>Container Id</th>
+            <th>Task Start</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody ng-repeat="task in tasks">
+        <tr>
+            <td>{{task["task-id"]}}</td>
+            <td>{{task["task-name"]}}</td>
+            <td>{{task["task-actual-owner"]}}</td>
+            <td>{{task["task-proc-inst-id"]}}</td>
+            <td>{{task["task-status"]}}</td>
+            <td>{{task["task-container-id"]}}</td>
+            <td>{{task["task-created-on"] | date:'MM-dd-yyyy HH:mm:ss Z'}}</td>
+            <td>
+                <button
+                        ng-show="task['task-status'] == 'Ready'"
+                        ng-class="{'btn': true, 'btn-primary': true, disabled: taskInProgress}"
+                        type="button"
+                        ng-click="claimTask(task['task-id'])">
+                    Claim
+                </button>
+
+                <button
+                        ng-show="task['task-status'] == 'Reserved'"
+                        ng-class="{'btn': true, 'btn-primary': true, disabled: taskInProgress}"
+                        type="button"
+                        ng-click="releaseTask(task['task-id'])">
+                    Release
+                </button>
+
+                <button
+                        ng-show="task['task-status'] == 'Reserved'"
+                        ng-class="{'btn': true, 'btn-primary': true, disabled: taskInProgress}"
+                        type="button"
+                        ng-click="startTask(task['task-id'])">
+                    Start
+                </button>
+
+                <button
+                        ng-show="task['task-status'] == 'InProgress'"
+                        ng-class="{'btn': true, 'btn-primary': true, disabled: (taskInProgressId != task['task-id'])}"
+                        type="button"
+                        ng-click="stopTask(task['task-id'])">
+                    Stop
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+    <div ng-show="taskInProgress">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="propertyPrice">Sales Price</label>
+                <div class="col-sm-9">
+                    <input ng-model="propertyPrice" type="text" id="propertyPrice" class="form-control"
+                           ng-disabled="true">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="appraisedValue">Appraised Value</label>
+                <div class="col-sm-9">
+                    <input ng-model="appraisedValue" type="text" id="appraisedValue" class="form-control"
+                           ng-disabled="true">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="downPayment">Down Payment</label>
+                <div class="col-sm-9">
+                    <input ng-model="downPayment" type="text" id="downPayment" class="form-control"
+                           ng-disabled="true">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="amortization">Amortization</label>
+                <div class="col-sm-9">
+                    <input ng-model="amortization" type="text" id="amortization" class="form-control"
+                           ng-disabled="true">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="apr">Annual Percentage Rate</label>
+                <div class="col-sm-9">
+                    <input ng-model="apr" type="text" id="apr" class="form-control"
+                           ng-disabled="true">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="applicantIncome">Annual Income</label>
+                <div class="col-sm-9">
+                    <input ng-model="applicantIncome" type="text" id="applicantIncome" class="form-control"
+                           ng-disabled="true">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-1">
+                    <button ng-click="completeReview(true)" class="btn btn-primary">Approve Loan</button>
+                </div>
+                <div class="col-sm-1">
+                    <button ng-click="completeReview(false)" class="btn btn-primary">Deny Loan</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
