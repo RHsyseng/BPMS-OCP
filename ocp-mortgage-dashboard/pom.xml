@@ -175,13 +175,13 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <executable>bower</executable>
-                    <arguments>
-                        <argument>install</argument>
-                    </arguments>
-                    <workingDirectory>${basedir}</workingDirectory>
-                </configuration>
+                <!--<configuration>-->
+                    <!--<executable>bower</executable>-->
+                    <!--<arguments>-->
+                        <!--<argument>install</argument>-->
+                    <!--</arguments>-->
+                    <!--<workingDirectory>${basedir}</workingDirectory>-->
+                <!--</configuration>-->
             </plugin>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
