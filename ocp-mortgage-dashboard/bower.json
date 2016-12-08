@@ -9,6 +9,7 @@
   "homepage": "",
   "private": true,
   "dependencies": {
+    "bower": "latest",
     "angular": "^1.4.0",
     "angular-loader": "^1.4.0",
     "angular-mocks": "^1.4.0",
@@ -28,5 +29,8 @@
   "resolutions": {
     "bootstrap": "~3.3.7",
     "angular": "1.5.9"
-  }
+  },
+  "scripts": {
+  "postinstall": "HOME=$OPENSHIFT_REPO_DIR bower install || bower install"
+},
 }
