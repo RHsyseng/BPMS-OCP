@@ -79,7 +79,7 @@
       </bpmn2:extensionElements>
       <bpmn2:incoming>_A2504829-8114-46A9-9DBA-A20AF8113659</bpmn2:incoming>
       <bpmn2:outgoing>_6EA35DEA-1BE2-4CB6-B2FD-0F760694D7D4</bpmn2:outgoing>
-      <bpmn2:script><![CDATA[System.out.println("Application: " + application);]]></bpmn2:script>
+      <bpmn2:script><![CDATA[return;]]></bpmn2:script>
     </bpmn2:scriptTask>
     <bpmn2:endEvent id="_F64BDAB5-7D19-4CE4-AAB3-23288D49FCB3" drools:selectable="true" color:background-color="#ff6347" color:border-color="#000000" color:color="#000000" name="">
       <bpmn2:extensionElements>
@@ -477,7 +477,7 @@ kcontext.setVariable("borrowerQualified", Boolean.valueOf(qualified));]]></bpmn2
       </bpmn2:extensionElements>
       <bpmn2:incoming>_550FA054-0BF6-4C69-AD99-9D8665084D5C</bpmn2:incoming>
       <bpmn2:outgoing>_C3B51DC7-8D13-4506-B76D-0BD5F335F954</bpmn2:outgoing>
-      <bpmn2:script><![CDATA[System.out.println("Mortgage Application " + application + " Denied.");]]></bpmn2:script>
+      <bpmn2:script><![CDATA[return;]]></bpmn2:script>
     </bpmn2:scriptTask>
     <bpmn2:endEvent id="_5FEB9BB0-3299-408D-8F77-FB28F7205114" drools:selectable="true" color:background-color="#ff6347" color:border-color="#000000" color:color="#000000" name="">
       <bpmn2:extensionElements>

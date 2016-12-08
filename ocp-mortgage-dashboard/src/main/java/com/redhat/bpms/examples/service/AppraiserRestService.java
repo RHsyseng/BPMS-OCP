@@ -119,11 +119,11 @@ public class AppraiserRestService extends RestClientService {
 
             Map<String, Object> inputApplication = getProcessVariableApp(taskId);
 
-            ProcessServicesClient processServicesClient = initClient(Configuration.Users.APPRAISER)
-                    .getServicesClient(ProcessServicesClient.class);
+//            ProcessServicesClient processServicesClient = initClient(Configuration.Users.APPRAISER)
+//                    .getServicesClient(ProcessServicesClient.class);
 
-            processServicesClient.setProcessVariable(getContainerId(), getProcessInstanceId(taskId),
-                    "application", ApplicationMapper.convert(application));
+//            processServicesClient.setProcessVariable(getContainerId(), getProcessInstanceId(taskId),
+//                    "application", ApplicationMapper.convert(application));
 
             UserTaskServicesClient userTaskClient = initClient(Configuration.Users.APPRAISER)
                     .getServicesClient(UserTaskServicesClient.class);
