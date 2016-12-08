@@ -1,6 +1,104 @@
-<div class="form-group">
-    <label class="col-sm-3 control-label"></label>
-    <div class="col-sm-9 alert alert-danger">
-        <strong>Hey, Wait!</strong> This functionality may not be complete yet...
+<div class="alert alert-success" ng-show="successVisible">
+    <span class="pficon pficon-ok"></span>
+    {{successMessage}}
+</div>
+
+<div class="alert alert-danger" ng-show="errorVisible">
+    <span class="pficon pficon-error-circle-o"></span>
+    {{errorMessage}}
+</div>
+
+<div class="row">
+    <h4><b>Outstanding Appraisal Tasks</b></h4>
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Task Id</th>
+            <th>Task Name</th>
+            <th>Task Owner</th>
+            <th>Related Process Instance</th>
+            <th>Task Status</th>
+            <th>Container Id</th>
+            <th>Task Start</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody ng-repeat="task in tasks">
+        <tr>
+            <td>{{task["task-id"]}}</td>
+            <td>{{task["task-name"]}}</td>
+            <td>{{task["task-actual-owner"]}}</td>
+            <td>{{task["task-proc-inst-id"]}}</td>
+            <td>{{task["task-status"]}}</td>
+            <td>{{task["task-container-id"]}}</td>
+            <td>{{task["task-created-on"] | date:'MM-dd-yyyy HH:mm:ss Z'}}</td>
+            <td>
+                <button
+                        ng-show="task['task-status'] == 'Ready'"
+                        ng-class="{'btn': true, 'btn-primary': true, disabled: taskInProgress}"
+                        type="button"
+                        ng-click="claimTask(task['task-id'])">
+                    Claim
+                </button>
+
+                <button
+                        ng-show="task['task-status'] == 'Reserved'"
+                        ng-class="{'btn': true, 'btn-primary': true, disabled: taskInProgress}"
+                        type="button"
+                        ng-click="releaseTask(task['task-id'])">
+                    Release
+                </button>
+
+                <button
+                        ng-show="task['task-status'] == 'Reserved'"
+                        ng-class="{'btn': true, 'btn-primary': true, disabled: taskInProgress}"
+                        type="button"
+                        ng-click="startTask(task['task-id'])">
+                    Start
+                </button>
+
+                <button
+                        ng-show="task['task-status'] == 'InProgress'"
+                        ng-class="{'btn': true, 'btn-primary': true, disabled: (taskInProgressId != task['task-id'])}"
+                        type="button"
+                        ng-click="stopTask(task['task-id'])">
+                    Stop
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="row">
+    <div ng-show="taskInProgress">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="propertyAddress">Property Address</label>
+                <div class="col-sm-9">
+                    <input ng-model="propertyAddress" type="text" id="propertyAddress" class="form-control"
+                           ng-disabled="true">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="propertyPrice">Sales Price</label>
+                <div class="col-sm-9">
+                    <input ng-model="propertyPrice" type="text" id="propertyPrice" class="form-control"
+                           ng-disabled="true">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="appraisalValue">Appraisal value</label>
+                <div class="col-sm-9">
+                    <input ng-model="appraisalValue" type="text" id="appraisalValue" class="form-control">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button ng-click="submitApp()" class="btn btn-primary">Submit Appraisal</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

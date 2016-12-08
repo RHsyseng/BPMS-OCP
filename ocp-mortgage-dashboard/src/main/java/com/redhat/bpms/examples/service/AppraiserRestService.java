@@ -3,8 +3,10 @@ package com.redhat.bpms.examples.service;
 import com.redhat.bpms.examples.Configuration;
 import com.redhat.bpms.examples.mappers.ApplicationMapper;
 import com.redhat.bpms.examples.mortgage.Application;
+import org.kie.server.api.model.definition.VariablesDefinition;
 import org.kie.server.api.model.instance.ProcessInstance;
 import org.kie.server.api.model.instance.TaskSummary;
+import org.kie.server.client.ProcessServicesClient;
 import org.kie.server.client.UserTaskServicesClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,18 +23,18 @@ import java.util.Map;
  * @since Nov/11/2016
  */
 @Singleton
-public class BrokerRestService extends RestClientService {
+public class AppraiserRestService extends RestClientService {
 
-    private static final Logger logger = LoggerFactory.getLogger(BrokerRestService.class);
+    private static final Logger logger = LoggerFactory.getLogger(AppraiserRestService.class);
 
     public Response.Status claimTask(long taskId) {
 
         try {
 
-            UserTaskServicesClient userTaskClient = initClient(Configuration.Users.BROKER)
+            UserTaskServicesClient userTaskClient = initClient(Configuration.Users.APPRAISER)
                     .getServicesClient(UserTaskServicesClient.class);
 
-            userTaskClient.claimTask(getContainerId(), taskId, Configuration.Users.BROKER.username());
+            userTaskClient.claimTask(getContainerId(), taskId, Configuration.Users.APPRAISER.username());
 
         } catch (Exception e) {
             logger.error("ERROR in Rest endpoint claimTask...", e);
@@ -44,10 +46,10 @@ public class BrokerRestService extends RestClientService {
 
         try {
 
-            UserTaskServicesClient userTaskClient = initClient(Configuration.Users.BROKER)
+            UserTaskServicesClient userTaskClient = initClient(Configuration.Users.APPRAISER)
                     .getServicesClient(UserTaskServicesClient.class);
 
-            userTaskClient.releaseTask(getContainerId(), taskId, Configuration.Users.BROKER.username());
+            userTaskClient.releaseTask(getContainerId(), taskId, Configuration.Users.APPRAISER.username());
 
         } catch (Exception e) {
             logger.error("ERROR in Rest endpoint releaseTask...", e);
@@ -60,12 +62,12 @@ public class BrokerRestService extends RestClientService {
         Map<String, Object> inputApplication = new HashMap<>();
         try {
 
-            UserTaskServicesClient userTaskClient = initClient(Configuration.Users.BROKER)
+            UserTaskServicesClient userTaskClient = initClient(Configuration.Users.APPRAISER)
                     .getServicesClient(UserTaskServicesClient.class);
 
-            userTaskClient.startTask(getContainerId(), taskId, Configuration.Users.BROKER.username());
+            userTaskClient.startTask(getContainerId(), taskId, Configuration.Users.APPRAISER.username());
 
-            inputApplication = userTaskClient.getTaskInputContentByTaskId(getContainerId(), taskId);
+            inputApplication = getProcessVariableApp(taskId);
 
         } catch (Exception e) {
             logger.error("ERROR in Rest endpoint startTask...", e);
@@ -77,10 +79,10 @@ public class BrokerRestService extends RestClientService {
 
         try {
 
-            UserTaskServicesClient userTaskClient = initClient(Configuration.Users.BROKER)
+            UserTaskServicesClient userTaskClient = initClient(Configuration.Users.APPRAISER)
                     .getServicesClient(UserTaskServicesClient.class);
 
-            userTaskClient.stopTask(getContainerId(), taskId, Configuration.Users.BROKER.username());
+            userTaskClient.stopTask(getContainerId(), taskId, Configuration.Users.APPRAISER.username());
 
         } catch (Exception e) {
             logger.error("ERROR in Rest endpoint stopTask...", e);
@@ -114,11 +116,20 @@ public class BrokerRestService extends RestClientService {
     public Response.Status completeTask(Long taskId, Application application) {
 
         try {
-            UserTaskServicesClient userTaskClient = initClient(Configuration.Users.BROKER)
+
+            Map<String, Object> inputApplication = getProcessVariableApp(taskId);
+
+            ProcessServicesClient processServicesClient = initClient(Configuration.Users.APPRAISER)
+                    .getServicesClient(ProcessServicesClient.class);
+
+            processServicesClient.setProcessVariable(getContainerId(), getProcessInstanceId(taskId),
+                    "application", ApplicationMapper.convert(application));
+
+            UserTaskServicesClient userTaskClient = initClient(Configuration.Users.APPRAISER)
                     .getServicesClient(UserTaskServicesClient.class);
 
-            userTaskClient.completeTask(getContainerId(), taskId, Configuration.Users.BROKER.username(),
-                    ApplicationMapper.convert(application, "taskOutputApplication"));
+            userTaskClient.completeTask(getContainerId(), taskId, Configuration.Users.APPRAISER.username(),
+                    ApplicationMapper.convert(application));
 
         } catch (Exception e) {
             logger.error("ERROR in Rest endpoint completeTask...", e);
@@ -128,11 +139,32 @@ public class BrokerRestService extends RestClientService {
 
     public List<TaskSummary> listTasks() {
 
-        return filterTasks("Data Correction");
+        return filterTasks("Appraisal");
     }
 
-    public List<TaskSummary> listDownPaymentTasks() {
+    private Map<String, Object> getProcessVariableApp(long taskId) {
 
-        return filterTasks("Increase Down Payment");
+        ProcessServicesClient processServicesClient = initClient(Configuration.Users.APPRAISER)
+                .getServicesClient(ProcessServicesClient.class);
+
+        long processInstanceId = getProcessInstanceId(taskId);
+
+        return (Map<String, Object>) processServicesClient.getProcessInstanceVariable(getContainerId(),
+                processInstanceId,"application");
+    }
+
+    private Long getProcessInstanceId(long taskId) {
+
+        List<TaskSummary> tasks = listTasks();
+        Long processInstanceId = null;
+        for (TaskSummary task : tasks) {
+            if (task.getId().equals(taskId)) {
+                processInstanceId = task.getProcessInstanceId();
+            }
+        }
+        if (processInstanceId == null)
+            throw new IllegalArgumentException();
+
+        return processInstanceId;
     }
 }

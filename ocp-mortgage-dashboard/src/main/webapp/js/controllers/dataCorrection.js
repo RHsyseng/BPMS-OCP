@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('app')
-    .controller("DataCorrectionCtrl", ['$scope', '$http', 'Constants', '$timeout',
-        function ($scope, $http, Constants, $timeout) {
+    .controller("DataCorrectionCtrl", ['$scope', '$http', 'Constants', '$location', '$timeout',
+        function ($scope, $http, Constants, $location, $timeout) {
 
             $scope.consts = Constants;
             $scope.taskInProgress = false;
@@ -33,7 +33,7 @@ angular.module('app')
                         console.log("ERROR: " + JSON.stringify({data: data}));
                         $timeout(function () {
                             $scope.errorVisible = false;
-                            $scope.successMessage = "";
+                            $scope.errorMessage = "";
                         }, 2000);
                     });
             };
@@ -56,7 +56,7 @@ angular.module('app')
                         console.log("ERROR: " + JSON.stringify({data: data}));
                         $timeout(function () {
                             $scope.errorVisible = false;
-                            $scope.successMessage = "";
+                            $scope.errorMessage = "";
                         }, 2000);
                     });
             };
@@ -92,7 +92,7 @@ angular.module('app')
                         console.log("ERROR: " + JSON.stringify({data: data}));
                         $timeout(function () {
                             $scope.errorVisible = false;
-                            $scope.successMessage = "";
+                            $scope.errorMessage = "";
                         }, 2000);
                     });
             };
@@ -116,6 +116,47 @@ angular.module('app')
                         fetchTasks();
                         console.log("ERROR: " + JSON.stringify({data: data}));
                         $timeout(function () {
+                            $scope.errorVisible = false;
+                            $scope.errorMessage = "";
+                        }, 2000);
+                    });
+            };
+
+            $scope.submitApp = function() {
+
+                var $application = {
+                    applicant : {
+                        name: $scope.applicantName,
+                        ssn: $scope.applicantSsn,
+                        income: $scope.applicantIncome,
+                        creditScore: null
+                    },
+                    property : {
+                        address: $scope.propertyAddress,
+                        price: $scope.propertyPrice
+                    },
+                    downPayment: $scope.downPayment,
+                    amortization: $scope.amortization,
+                    appraisal : null,
+                    mortgageAmount: ($scope.propertyPrice - $scope.downPayment),
+                    apr: $scope.apr
+                };
+
+                $http.post("service/broker/completeTask/" + $scope.taskInProgressId, $application).then(
+                    function(data) {
+                        $scope.successMessage = "Data Correction submitted successfully";
+                        $scope.successVisible = true;
+                        $timeout(function() {
+                            $scope.successVisible = false;
+                            $scope.successMessage = "";
+                            $location.path("/home");
+                        }, 2000);
+                    },
+                    function (data) {
+                        $scope.errorMessage = "Error occurred while attempting to submit Data Correction";
+                        $scope.errorVisible = true;
+                        console.log("ERROR: " + JSON.stringify({data: data}));
+                        $timeout(function() {
                             $scope.errorVisible = false;
                             $scope.successMessage = "";
                         }, 2000);

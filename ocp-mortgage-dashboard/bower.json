@@ -26,6 +26,7 @@
     "tests"
   ],
   "resolutions": {
-    "bootstrap": "~3.3.7"
+    "bootstrap": "~3.3.7",
+    "angular": "1.5.9"
   }
 }

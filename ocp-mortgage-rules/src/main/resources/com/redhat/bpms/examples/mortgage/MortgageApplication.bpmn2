@@ -654,7 +654,16 @@ kcontext.setVariable("borrowerQualified", Boolean.valueOf(qualified));]]></bpmn2
           <drools:metaValue><![CDATA[Sufficient Appraisal]]></drools:metaValue>
         </drools:metaData>
       </bpmn2:extensionElements>
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_LPiJ4YoZEea7I-kAbfhROQ" language="http://www.java.com/java"><![CDATA[return (application.getAppraisal().getValue() >= application.getProperty().getPrice());]]></bpmn2:conditionExpression>
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_LPiJ4YoZEea7I-kAbfhROQ" language="http://www.java.com/java"><![CDATA[
+      if (application instance of com.redhat.bpms.examples.mortgage.Application) {
+        System.out.println("processing as Application Object");
+        return (application.getAppraisal().getValue() >= application.getProperty().getPrice());
+      } else {
+        System.out.println("Input is not of type Application, instead is " + application.getClass().getSimpleName);
+        System.out.println(application.toString());
+        return (application.getAppraisal().getValue() >= application.getProperty().getPrice());
+      }
+      ]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:sequenceFlow id="_268EC81D-436B-40E5-B324-BFA37B7E6B9F" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" name="No" sourceRef="_EFB7E25E-E6E5-457F-ADF0-7A500344CAF6" targetRef="_B5F7F563-F9D9-4C24-AEEE-4CF7EEBB3A16">
       <bpmn2:extensionElements>

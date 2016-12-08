@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public final class ApplicationMapper {
 
-    public static Map<String, Object> convert(Application application) {
+    public static Map<String, Object> convert(Application application, String payloadKey) {
 
         final Logger logger = LoggerFactory.getLogger(ApplicationMapper.class);
 
@@ -39,13 +39,24 @@ public final class ApplicationMapper {
             appContent.put("mortgageAmount", application.getProperty().getPrice() - application.getDownPayment());
             appContent.put("apr", application.getApr());
 
+            if (application.getAppraisal() != null) {
+                Map<String, Object> appraisal = new HashMap<>();
+                appraisal.put("property", property);
+                appraisal.put("value", application.getAppraisal().getValue());
+                appContent.put("appraisal", appraisal);
+            }
+
             wrapper.put("com.redhat.bpms.examples.mortgage.Application", appContent);
-            payload.put("application", wrapper);
+            payload.put(payloadKey, wrapper);
 
         } catch (Exception e) {
             logger.error("ERROR in mapping application to HashMap format...", e);
         }
 
         return payload;
+    }
+
+    public static Map<String, Object> convert(Application application) {
+        return convert(application, "application");
     }
 }

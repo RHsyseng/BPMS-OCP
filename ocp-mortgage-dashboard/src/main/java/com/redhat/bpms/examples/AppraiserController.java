@@ -1,7 +1,7 @@
 package com.redhat.bpms.examples;
 
 import com.redhat.bpms.examples.mortgage.Application;
-import com.redhat.bpms.examples.service.BrokerRestService;
+import com.redhat.bpms.examples.service.AppraiserRestService;
 import org.kie.server.api.model.instance.TaskSummary;
 
 import javax.enterprise.context.RequestScoped;
@@ -16,27 +16,19 @@ import java.util.Map;
  * @author jary
  * @since Nov/03/2016
  */
-@Path("/broker")
+@Path("/appraiser")
 @RequestScoped
-public class BrokerController {
+public class AppraiserController {
 
     @Inject
-    private BrokerRestService brokerRestService;
+    private AppraiserRestService appraiserRestService;
 
     @GET
-    @Path("/dataCorrectionTasks")
+    @Path("/tasks")
     @Produces(MediaType.APPLICATION_JSON)
     public List<TaskSummary> listTasks() {
 
-        return brokerRestService.listTasks();
-    }
-
-    @GET
-    @Path("/downPaymentTasks")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<TaskSummary> listDownPaymentTasks() {
-
-        return brokerRestService.listDownPaymentTasks();
+        return appraiserRestService.listTasks();
     }
 
     @POST
@@ -44,7 +36,7 @@ public class BrokerController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response.Status claimTask(Long taskId) {
 
-        return brokerRestService.claimTask(taskId);
+        return appraiserRestService.claimTask(taskId);
     }
 
     @POST
@@ -52,7 +44,7 @@ public class BrokerController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response.Status releaseTask(Long taskId) {
 
-        return brokerRestService.releaseTask(taskId);
+        return appraiserRestService.releaseTask(taskId);
     }
 
     @POST
@@ -61,7 +53,7 @@ public class BrokerController {
     @Produces(MediaType.APPLICATION_JSON)
     public Map<String, Object> startTask(Long taskId) {
 
-        return brokerRestService.startTask(taskId);
+        return appraiserRestService.startTask(taskId);
     }
 
     @POST
@@ -69,7 +61,7 @@ public class BrokerController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response.Status stopTask(Long taskId) {
 
-        return brokerRestService.stopTask(taskId);
+        return appraiserRestService.stopTask(taskId);
     }
 
     @POST
@@ -77,6 +69,6 @@ public class BrokerController {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response.Status completeTask(@PathParam("taskId") Long taskId, Application application) {
 
-        return brokerRestService.completeTask(taskId, application);
+        return appraiserRestService.completeTask(taskId, application);
     }
 }
