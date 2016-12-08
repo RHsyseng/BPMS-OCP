@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "if [ -d \"$OPENSHIFT_REPO_DIR\" ]; then (export HOME=\"$OPENSHIFT_REPO_DIR\"/..; bower install --config.interactive=false) else (bower install) fi",
     "prestart": "npm install",
     "start": "http-server src/main/webapp -a localhost -p 8000",
     "pretest": "npm install",
@@ -67,6 +67,7 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-    "patternfly": "^3.13.0"
+    "patternfly": "^3.13.0",
+    "bower": "latest"
   }
 }

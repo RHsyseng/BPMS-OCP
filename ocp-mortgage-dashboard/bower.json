@@ -29,8 +29,5 @@
   "resolutions": {
     "bootstrap": "~3.3.7",
     "angular": "1.5.9"
-  },
-  "scripts": {
-  "postinstall": "HOME=$OPENSHIFT_REPO_DIR bower install || bower install"
-},
+  }
 }
