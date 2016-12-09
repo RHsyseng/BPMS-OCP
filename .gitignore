@@ -75,7 +75,6 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 node_modules
-dist
 .tmp
 .sass-cache
 bower_components

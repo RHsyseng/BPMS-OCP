@@ -80,5 +80,4 @@ dist
 .sass-cache
 bower_components
 npm-debug.log
-/src/main/webapp/vendor/*
 target

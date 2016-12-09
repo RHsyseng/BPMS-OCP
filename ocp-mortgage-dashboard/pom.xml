@@ -197,29 +197,6 @@
                     </filesets>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>net.alchim31.maven</groupId>
-                <artifactId>yuicompressor-maven-plugin</artifactId>
-                <version>${maven.yuicompressor.version}</version>
-                <executions>
-                    <execution>
-                        <id>compress-js</id>
-                        <goals>
-                            <goal>compress</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <failOnWarning>true</failOnWarning>
-                    <outputDirectory>target/app/js/</outputDirectory>
-                    <nosuffix>true</nosuffix>
-                    <excludes>
-                        <exclude>vendor/**</exclude>
-                        <exclude>**/*min.css</exclude>
-                        <exclude>**/*min.js</exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 </project>
