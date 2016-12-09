@@ -5,8 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "HOME=$OPENSHIFT_REPO_DIR bower install || bower install",
-    "prestart": "npm install; npm install -g bower",
+    "postinstall": "if [ -d \"$OPENSHIFT_REPO_DIR\" ]; then (export HOME=\"$OPENSHIFT_REPO_DIR\"/..; $(npm bin)/bower install) else ($(npm bin)/bower install) fi && npm run setup",
+    "prestart": "npm install",
     "start": "http-server src/main/webapp -a localhost -p 8000",
     "pretest": "npm install",
     "test": "karma start src/test/javascript/karma.conf.js",
@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jeremyary/ocp-mortgage-example/ocp-mortgage-dashboard.git"
+    "url": "git+https://github.com/RHsyseng/BPMS-OCP.git"
   },
   "author": "jary@redhat.com",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/jeremyary/ocp-mortgage-example/ocp-mortgage-dashboard/issues"
+    "url": "https://github.com/RHsyseng/BPMS-OCP/issues"
   },
-  "homepage": "https://github.com/jeremyary/ocp-mortgage-example/ocp-mortgage-dashboard#readme",
+  "homepage": "https://github.com/RHsyseng/BPMS-OCP#readme",
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
     "grunt": "^0.4.5",
