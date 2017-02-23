@@ -1,0 +1,12 @@
+#!/bin/sh
+
+env > /tmp/env.log
+
+JAVA_OPTS="-Xms1303m -Xmx1303m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true"
+JAVA_OPTS="$JAVA_OPTS -Djboss.modules.system.pkgs=$JBOSS_MODULES_SYSTEM_PKGS -Djava.awt.headless=true"
+JAVA_OPTS="$JAVA_OPTS -DCREDIT_SERVICE_FQDN=$CREDIT_SERVICE_FQDN"
+
+export JAVA_OPTS
+
+
+exec $JBOSS_HOME/bin/kieserver-launch.sh
