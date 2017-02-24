@@ -1,11 +1,5 @@
 #!/bin/sh
 
-env > /tmp/env.log
-
-JAVA_OPTS="-Xms1303m -Xmx1303m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true"
-JAVA_OPTS="$JAVA_OPTS -Djboss.modules.system.pkgs=$JBOSS_MODULES_SYSTEM_PKGS -Djava.awt.headless=true"
-JAVA_OPTS="$JAVA_OPTS -DKIE_API_REST_FQDN=$KIE_API_REST_FQDN"
-
-export JAVA_OPTS
+echo "JAVA_OPTS=\"\$JAVA_OPTS -DKIE_API_REST_FQDN=$KIE_API_REST_FQDN\"" >> $JBOSS_HOME/bin/standalone.conf
 
 exec $JBOSS_HOME/bin/openshift-launch.sh
