@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "JAVA_OPTS=\"\$JAVA_OPTS -DCREDIT_SERVICE_FQDN=$CREDIT_SERVICE_FQDN\"" >> $JBOSS_HOME/bin/standalone.conf
+
+exec $JBOSS_HOME/bin/kieserver-launch.sh

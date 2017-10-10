@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "JAVA_OPTS=\"\$JAVA_OPTS -DKIE_API_REST_FQDN=$KIE_API_REST_FQDN\"" >> $JBOSS_HOME/bin/standalone.conf
+
+exec $JBOSS_HOME/bin/openshift-launch.sh
