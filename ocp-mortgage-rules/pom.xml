@@ -15,7 +15,7 @@
         <javaee.endorsed.version>7.0</javaee.endorsed.version>
         <javax.persistence.version>1.0.1.Final-redhat-3</javax.persistence.version>
         <javax.transaction.version>1.0.1.Final-redhat-3</javax.transaction.version>
-        <junit.version>4.11</junit.version>
+        <junit.version>4.13.1</junit.version>
         <maven.compiler.version>3.1</maven.compiler.version>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.dependency.version>2.6</maven.dependency.version>
